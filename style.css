@@ -1,0 +1,203 @@
+/* =========================================================
+   John Spenceley — Personal Website
+   Simple, warm, single-page layout. No frameworks or JS.
+   ========================================================= */
+
+/* -------------------- Design tokens -------------------- */
+:root {
+  /* Warm, soft palette */
+  --color-cream: #faf6ef;
+  --color-cream-dark: #f1e9dc;
+  --color-sage: #9caf88;
+  --color-sage-dark: #7c9268;
+  --color-dusty-rose: #d8a7a0;
+  --color-dusty-rose-dark: #c48b83;
+  --color-text: #3f3a34;
+  --color-text-muted: #6b6459;
+  --color-card-bg: #ffffff;
+  --color-border: #e7ddcd;
+
+  --shadow-soft: 0 10px 30px rgba(63, 58, 52, 0.08);
+  --shadow-soft-hover: 0 14px 36px rgba(63, 58, 52, 0.12);
+
+  --radius-lg: 1.5rem;
+  --radius-md: 1rem;
+
+  --font-body: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-heading: Georgia, "Times New Roman", serif;
+
+  --max-width: 46rem;
+}
+
+/* -------------------- Reset & base -------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  background-image: linear-gradient(180deg, var(--color-cream) 0%, var(--color-cream-dark) 100%);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  margin-top: 0;
+}
+
+p {
+  margin: 0 0 1rem 0;
+  color: var(--color-text-muted);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--color-sage-dark);
+  text-decoration: underline;
+  text-decoration-color: var(--color-dusty-rose);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-dusty-rose-dark);
+}
+
+/* -------------------- Layout -------------------- */
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 1.5rem 3rem;
+}
+
+/* -------------------- Hero -------------------- */
+.hero {
+  text-align: center;
+  padding: 0 0 3rem;
+}
+
+.hero__name {
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  letter-spacing: 0.01em;
+}
+
+.hero__tagline {
+  margin: 0.75rem auto 0;
+  max-width: 32rem;
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+}
+
+/* -------------------- Cards -------------------- */
+.card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  display: inline-block;
+}
+
+.card h2::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-top: 0.5rem;
+  border-radius: 999px;
+  background-color: var(--color-dusty-rose);
+}
+
+/* -------------------- Interests -------------------- */
+.interests {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.interests__item {
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.interests__item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft-hover);
+  border-color: var(--color-sage);
+}
+
+.interests__item h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+  color: var(--color-sage-dark);
+}
+
+.interests__item p {
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+/* Last interest spans full width when count is odd (5 items) */
+.interests__item:last-child {
+  grid-column: 1 / -1;
+}
+
+/* -------------------- Footer -------------------- */
+.site-footer {
+  text-align: center;
+  padding-top: 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.site-footer a {
+  font-weight: 600;
+}
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 640px) {
+  .page {
+    padding: 3rem 1.25rem 2.5rem;
+  }
+
+  .card {
+    padding: 1.75rem;
+    border-radius: var(--radius-md);
+  }
+
+  .interests {
+    grid-template-columns: 1fr;
+  }
+
+  .interests__item:last-child {
+    grid-column: auto;
+  }
+}
